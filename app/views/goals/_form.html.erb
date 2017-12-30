@@ -1,0 +1,81 @@
+<div class="parent">
+<h2>New Goal</h2>
+<br>
+<%= form_with(model: goal, local: true) do |form| %>
+<div class="field">
+  <%= form.text_field :habit, id: :goal_habit,placeholder: "Habit to break" %>
+</div>
+
+<div class="field">
+  <%= form.text_field :why, id: :goal_why, placeholder: "Why do you want to break it?" %>
+</div>
+
+  <div class="actions">
+    <%= form.submit "Create Goal",class: "submit" %>
+  </div>
+<% end %>
+</div>
+<style>
+body {
+  background-color: #f9f9f9;
+}
+.parent {
+  width: 400px;
+  height: 380px;
+  margin-left: -200px;
+  left: 50%;
+  top: 70px;
+  position: relative;
+  background-color: #fff;
+  padding-top: 1%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1);
+}
+.parent > h2 {
+  color: #444;
+  font-weight: 500;
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 26px;
+  color: #e74c3c;
+  letter-spacing: 1px;
+  margin-bottom: 40px;
+}
+.parent > p {
+  font-family: sans-serif;
+  color: #666;
+  text-align: center;
+  margin-top: 25px;
+}
+  input[type=text]{
+    border: none;
+    border-bottom: 1px solid #ccc;
+    width: 80%;
+    height: 50px;
+    font-size: 17px;
+    letter-spacing: .5px;
+    font-weight: 300;
+    margin-left: -40%;
+    left: 50%;
+    position: relative;
+    margin-bottom: 20px;
+  }
+  .submit {
+    width: 80%;
+    height: 50px;
+    background-color: #e74c3c;
+    border: none;
+    left: 50%;
+    margin-left:-40%;
+    position: relative;
+    color: white;
+    cursor: pointer;
+    font-family: 'Futura';
+    text-transform: uppercase;
+    font-size: 15px;
+    letter-spacing: 2px;
+    margin-top: 20px;
+  }
+  .submit:hover {
+    background-color: #c63f31;
+  }
+</style>

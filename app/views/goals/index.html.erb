@@ -1,0 +1,211 @@
+<% if user_signed_in? %>
+<%= link_to "Log Out", destroy_user_session_path, method: :delete %>
+<h1 class="x">X</h1>
+<a href="<%= new_goal_path %>">
+<div class="newbtn">
+  New Goal
+</div>
+</a>
+<% @goals.each do |goal| %>
+<div class="table">
+  <h2 class="habit"><%= goal.habit %></h2>
+  <h4 class="why"><%= goal.why %></h4>
+  <%= link_to goal_path(goal), method: :delete,data: {confirm: "Are you sure?"} do %>
+    <i class="fa fa-trash-o fa-3x"></i>
+  <% end %>
+    <table>
+      <tbody>
+        <tr>
+          <% goal.days.limit(10).each do |day| %>
+          <% unless day.complete == 0 %>
+            <td class="row" style="color:#673AB7; font-weight: 800; font-size: 3em; height: 2em; width: 4em;">X</td>
+          <% else %>
+          <td class="row">
+            <% if day.date == Date.today %>
+              <%= link_to (((day.date + 1.day) - goal.days.first.date).to_d / (3600 * 24)).round(), day_path(day), :method => :put %>
+            <% else %>
+            <%= (((day.date + 1.day) - goal.days.first.date).to_d / (3600 * 24)).round() %>
+            <% end %>
+          </td>
+            <% end %>
+            <% end %>
+        </tr>
+        <tr>
+          <% goal.days.limit(10).offset(10).each do |day| %>
+            <% unless day.complete == 0 %>
+              <td class="row" style="color:#2ecc71; font-weight: 800; font-size: 3em; height: 2em; width: 4em;">X</td>
+            <% else %>
+              <td class="row">
+                <% if day.date == Date.today %>
+                  <%= link_to (((day.date + 1.day) - goal.days.first.date).to_d / (3600 * 24)).round(), day_path(day), :method => :put %>
+                <% else %>
+                <%= (((day.date + 1.day) - goal.days.first.date).to_d / (3600 * 24)).round() %>
+                <% end %>
+              </td>
+            <% end %>
+          <% end %>
+        </tr>
+        <tr>
+          <% goal.days.limit(10).offset(20).each do |day| %>
+          <% unless day.complete == 0 %>
+            <td class="row" style="color:#e67e22; font-weight: 800; font-size: 3em; height: 2em; width: 4em;">X</td>
+          <% else %>
+          <td class="row">
+            <% if day.date == Date.today %>
+              <%= link_to (((day.date + 1.day) - goal.days.first.date).to_d / (3600 * 24)).round(), day_path(day), :method => :put %>
+            <% else %>
+            <%= (((day.date + 1.day) - goal.days.first.date).to_d / (3600 * 24)).round() %>
+            <% end %>
+          </td>
+            <% end %>
+            <% end %>
+        </tr>
+        <tr>
+          <% goal.days.limit(10).offset(30).each do |day| %>
+          <% unless day.complete == 0 %>
+            <td class="row" style="color:#e74c3c; font-weight: 800; font-size: 3em; height: 2em; width: 4em;">X</td>
+          <% else %>
+          <td class="row">
+            <% if day.date == Date.today %>
+              <%= link_to (((day.date + 1.day) - goal.days.first.date).to_d / (3600 * 24)).round(), day_path(day), :method => :put %>
+            <% else %>
+            <%= (((day.date + 1.day) - goal.days.first.date).to_d / (3600 * 24)).round() %>
+            <% end %>
+          </td>
+            <% end %>
+            <% end %>
+        </tr>
+        <tr>
+          <% goal.days.limit(10).offset(40).each do |day| %>
+          <% unless day.complete == 0 %>
+            <td style="color:#3498db; font-weight: 800; font-size: 3em; height: 2em; width: 4em;">X</td>
+          <% else %>
+          <td>
+            <% if day.date == Date.today %>
+              <%= link_to (((day.date + 1.day) - goal.days.first.date).to_d / (3600 * 24)).round(), day_path(day), :method => :put %>
+            <% else %>
+            <%= (((day.date + 1.day) - goal.days.first.date).to_d / (3600 * 24)).round() %>
+            <% end %>
+          </td>
+            <% end %>
+            <% end %>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+<% end %>
+<% else %>
+<h1 class="heading">The <b>X</b> Effect</h1>
+<h3 class="subtitle"><i>Your willpower is like a muscle, and it gets stronger and stronger as you exercise it.</i></h3>
+<a href="<%= new_goal_path %>">
+<div class="newbtn">
+  Set A Goal
+</div>
+</a>
+<% end %>
+<style>
+.fa-trash-o {
+  float: right;
+  position: absolute;
+  top: 5%;
+  right: 5%;
+}
+.heading {
+  font-size: 80px;
+  text-align: center;
+  margin-top: 7%;
+  font-weight: 500;
+  color: #333;
+}
+b {
+  color: #e74c3c;
+}
+.subtitle {
+  color: #888;
+  font-weight: 300;
+  font-size: 20px;
+  font-family: 'Helvetica';
+  text-align: center;
+  margin-left: 30%;
+  margin-right: 30%;
+  line-height: 20px;
+  margin-bottom: 90px;
+}
+.x {
+  color: #e74c3c;
+  font-size: 8em;
+  text-align: center;
+  font-family: 'Futura';
+  margin-bottom:90px;
+}
+.habit {
+  font-family: 'Futura';
+  font-size: 3em;
+  text-align: center;
+  text-transform: uppercase;
+}
+.why {
+  font-family: 'Futura';
+  font-size: 1.4em;
+  color: #888;
+  font-weight: 500;
+  text-align: center;
+  margin-bottom: 40px;
+}
+table {
+  border-collapse: collapse;
+}
+.table {
+  background-color: #fff;
+  width: 62em;
+  padding: 20px;
+  margin-bottom: 30px;
+  margin-left: calc(-31em - 20px);
+  left: 50%;
+  position: relative;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1);
+}
+body {
+  background-color: #fcfcfc;
+}
+  .row{
+    border-bottom: 2px solid #444;
+  }
+  td:last-child {
+    border-right: none;
+  }
+  td {
+    border-right: 2px solid #444;
+    text-align: center;
+    width: 6em;
+    height: 3em;
+    font-size: 2em;
+    padding: none !important;
+    transition: .3s ease-in-out;
+  }
+  td:hover {
+    background-color: #eee;
+  }
+  .newbtn {
+    width: 200px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border: 3px solid #444;
+    color: #444;
+    cursor: pointer;
+    margin-left: -100px;
+    left: 50%;
+    position: relative;
+    transition: .3s ease-in-out;
+    margin-bottom: 50px;
+  }
+  .newbtn:hover {
+    background-color: #444;
+    color: white;
+  }
+</style>
