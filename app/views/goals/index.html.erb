@@ -17,7 +17,7 @@
       <tbody>
         <tr>
           <% goal.days.order('date ASC').limit(10).each do |day| %>
-          <% if day.complete == 1 %>
+          <% if day.complete == true %>
             <td class="row" style="color:#673AB7; font-weight: 800; font-size: 3em; height: 2em; width: 4em;">X</td>
           <% else %>
           <td class="row">
@@ -32,7 +32,7 @@
         </tr>
         <tr>
           <% goal.days.order('date ASC').limit(10).offset(10).each do |day| %>
-            <% if day.complete == 1 %>
+            <% if day.complete == true %>
               <td class="row" style="color:#2ecc71; font-weight: 800; font-size: 3em; height: 2em; width: 4em;">X</td>
             <% else %>
               <td class="row">
@@ -47,7 +47,7 @@
         </tr>
         <tr>
           <% goal.days.order('date ASC').limit(10).offset(20).each do |day| %>
-          <% if day.complete == 1 %>
+          <% if day.complete == true %>
             <td class="row" style="color:#e67e22; font-weight: 800; font-size: 3em; height: 2em; width: 4em;">X</td>
           <% else %>
           <td class="row">
@@ -62,7 +62,7 @@
         </tr>
         <tr>
           <% goal.days.order('date ASC').limit(10).offset(30).each do |day| %>
-          <% if day.complete == 1 %>
+          <% if day.complete == true %>
             <td class="row" style="color:#e74c3c; font-weight: 800; font-size: 3em; height: 2em; width: 4em;">X</td>
           <% else %>
           <td class="row">
@@ -77,7 +77,7 @@
         </tr>
         <tr>
           <% goal.days.order('date ASC').limit(10).offset(40).each do |day| %>
-          <% if day.complete == 1 %>
+          <% if day.complete == true %>
             <td style="color:#3498db; font-weight: 800; font-size: 3em; height: 2em; width: 4em;">X</td>
           <% else %>
           <td>
